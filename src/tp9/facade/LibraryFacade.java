@@ -11,23 +11,20 @@ import tp9.decorator.LibraryBookDecorator;
 public class LibraryFacade {
     private OldBookStore oldBookStore;
     private IBookStore bookStoreAdapter;
-    // autres attributs si nécessaire
 
     public LibraryFacade(OldBookStore oldBookStore) {
-        //TODO à compléter
+        this.oldBookStore = oldBookStore;
+        this.bookStoreAdapter = new BookStoreAdapter(oldBookStore);
     }
 
-
-    // Méthodes simplifiées pour l'accès client
+    // Fournit un livre simple depuis l'ancien système via l'adaptateur
     public IBook getBook(String title) {
-        // Logique pour obtenir un aperçu du livre
-        //TODO à compléter
-        return null ;
+        return bookStoreAdapter.fetchBook(title);
     }
 
     // Méthode qui renvoie un libraryBookDecorator
     public IBook libraryBook(String title) {
-        //TODO à compléter
-        return null;
+        Book book = bookStoreAdapter.fetchBook(title);
+        return new LibraryBookDecorator(book);
     }
 }
