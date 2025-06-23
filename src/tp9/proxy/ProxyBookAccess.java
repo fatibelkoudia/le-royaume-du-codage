@@ -13,7 +13,6 @@ public class ProxyBookAccess implements BookAccess {
         this.hasPurchased = false;
     }
 
-    @Override
     public void purchase() {
         this.hasPurchased = true;
     }
