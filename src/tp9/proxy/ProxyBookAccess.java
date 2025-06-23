@@ -6,12 +6,14 @@ import tp9.Book;
 public class ProxyBookAccess implements BookAccess {
     private RealBookAccess realBookAccess;
     private boolean hasPurchased;
-    // Logic for controlling access based on hasPurchased
 
+    // Logic for controlling access based on hasPurchased
     public ProxyBookAccess(Book book) {
-        //TODO à compléter
+        this.realBookAccess = new RealBookAccess(book);
+        this.hasPurchased = false;
     }
 
+    @Override
     public void purchase() {
         this.hasPurchased = true;
     }
@@ -19,14 +21,16 @@ public class ProxyBookAccess implements BookAccess {
     @Override
     public String read() {
         // Dans un Proxy, si le livre a été acheté, on autorise la lecture, sinon on indique à l'utilisateur qu'il doit acheter le livre
-        //TODO à compléter
-        return null ;
+        if (hasPurchased) {
+            return realBookAccess.read();
+        } else {
+            return "Please purchase the book to read.";
+        }
     }
 
     @Override
     public String preview() {
-        //TODO à compléter
-        return null ;
+        return realBookAccess.preview();
     }
 
 }

@@ -8,19 +8,17 @@ public class RealBookAccess implements BookAccess {
     // Logic for reading the full book
 
     public RealBookAccess(Book book) {
-        //TODO à compléter
+        this.book = book;
     }
 
     @Override
     public String read() {
-        //TODO à compléter
-        return null ;
+        return "Reading: " + book.getTitle();
     }
 
     @Override
     public String preview() {
-        //TODO à compléter
-        return null ;
+        return book.preview();
     }
 
 }
